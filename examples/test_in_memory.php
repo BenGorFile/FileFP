@@ -54,5 +54,4 @@ $commandBus = createCommandBus([
 ]);
 
 $files = $commandBus($uploadFileCommand);
-
 printResult('After execute upload file use case', $files);

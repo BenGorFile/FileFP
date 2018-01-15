@@ -17,8 +17,10 @@ namespace BenGorFile\Domain\Model\File;
 function save(array $mechanisms, array $files) : callable
 {
     return function (array $file) use ($mechanisms, $files) : array {
-        return array_map(function (callable $mechanism) use ($file, $files) {
-            return call_user_func($mechanism, $file, $files);
-        }, $mechanisms);
+        return array_unique(
+            array_map(function (callable $mechanism) use ($file, $files) : array {
+                return call_user_func($mechanism, $file, $files);
+            }, $mechanisms)
+        );
     };
 }

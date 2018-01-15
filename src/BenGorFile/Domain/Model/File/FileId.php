@@ -14,15 +14,13 @@ declare(strict_types=1);
 
 namespace BenGorFile\Domain\Model\File;
 
-use Ramsey\Uuid\Uuid;
-
 class FileId
 {
     private $id;
 
-    public function __construct(string $id = null)
+    public function __construct(string $id)
     {
-        $this->id = null === $id ? Uuid::uuid4()->toString() : $id;
+        $this->id = $id;
     }
 
     public function id() : string
