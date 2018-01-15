@@ -14,10 +14,6 @@ declare(strict_types=1);
 
 namespace BenGorFile\Application;
 
-use BenGorFile\Domain\Model\File\FileMimeTypeIsNotSupported;
-use BenGorFile\Domain\Model\File\FileNameIsInvalid;
-use Ramsey\Uuid\Uuid;
-
 class UploadFileCommand
 {
     public $id;
@@ -25,15 +21,9 @@ class UploadFileCommand
     public $uploadedFile;
     public $mimeType;
 
-    public function __construct(string $name, string $uploadedFile, string $mimeType, string $id = null)
+    public function __construct(string $id, string $name, string $uploadedFile, string $mimeType)
     {
-        if (!$name) {
-            throw new FileNameIsInvalid();
-        }
-        if (!$mimeType) {
-            throw new FileMimeTypeIsNotSupported();
-        }
-        $this->id = null === $id ? Uuid::uuid4()->toString() : $id;
+        $this->id = $id;
         $this->name = $name;
         $this->uploadedFile = $uploadedFile;
         $this->mimeType = $mimeType;

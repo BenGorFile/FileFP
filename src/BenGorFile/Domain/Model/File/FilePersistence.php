@@ -14,12 +14,11 @@ declare(strict_types=1);
 
 namespace BenGorFile\Domain\Model\File;
 
-function save(callable $repository, array $state, array $events) : void
+function save(array $mechanisms, array $files) : callable
 {
-    return function () {
-
+    return function (array $file) use ($mechanisms, $files) : array {
+        return array_map(function (callable $mechanism) use ($file, $files) {
+            return call_user_func($mechanism, $file, $files);
+        }, $mechanisms);
     };
-    apply($state, $events);
-
-    // It would be a compose between persist + write
 }

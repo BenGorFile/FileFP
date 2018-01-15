@@ -23,9 +23,6 @@ class FileName
 
     public function __construct(string $name)
     {
-        if (!$name) {
-            throw new FileNameIsInvalid();
-        }
         $this->name = $this->sanitize(pathinfo($name, PATHINFO_FILENAME));
         $this->extension = pathinfo($name, PATHINFO_EXTENSION);
     }

@@ -20,7 +20,7 @@ class FileId
 {
     private $id;
 
-    public function __construct(FileId $id = null)
+    public function __construct(string $id = null)
     {
         $this->id = null === $id ? Uuid::uuid4()->toString() : $id;
     }

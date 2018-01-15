@@ -24,7 +24,7 @@ function fileWasUploaded(FileId $id, FileName $name, FileMimeType $mimeType, str
                 'name'        => $name,
                 'mime_type'   => $mimeType,
                 'content'     => $content,
-                'occurred_on' => (\DateTimeImmutable::createFromFormat('U', new \DateTimeImmutable()))->getTimestamp(),
+                'occurred_on' => (new \DateTimeImmutable('now', new \DateTimeZone('UTC')))->getTimestamp(),
             ];
         },
     ];

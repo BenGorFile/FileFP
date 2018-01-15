@@ -17,17 +17,15 @@
         }
     ],
     "require": {
-        "php": "^7.1",
-        "ramsey/uuid": "^3.0"
+        "php": "^7.1"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^1.11",
         "phpspec/phpspec": "^2.5"
     },
     "scripts": {
         "cs": [
-            "php-cs-fixer fix --config-file=.php_cs",
-            "php-cs-fixer fix --config-file=.phpspec_cs"
+            "php-cs-fixer fix --config=.php_cs",
+            "php-cs-fixer fix --config=.phpspec_cs"
         ],
         "test": "phpspec run"
     },
@@ -36,7 +34,12 @@
             "BenGorFile\\": "src/BenGorFile/"
         },
         "files": [
-            "src/BenGorFile/Application/UploadFile.php"
+            "src/BenGorFile/Application/UploadFile.php",
+            "src/BenGorFile/Domain/Model/File/File.php",
+            "src/BenGorFile/Domain/Model/File/FileWasUploaded.php",
+            "src/BenGorFile/Domain/Model/File/FilePersistence.php",
+            "src/BenGorFile/Infrastructure/Domain/Model/File/InMemoryFileFilesystem.php",
+            "src/BenGorFile/Infrastructure/Domain/Model/File/InMemoryFileRepository.php"
         ],
         "exclude-from-classmap": ["/spec/"]
     },

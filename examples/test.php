@@ -12,28 +12,47 @@
 
 declare(strict_types=1);
 
+use BenGorFile\Application\UploadFileCommand;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 function createCommandBus(array $handlers) : callable
 {
-    return function ($command) use ($handlers) : void {
-        $handlers[get_class($command)]($command);
+    return function ($command) use ($handlers) : array {
+        return $handlers[get_class($command)]($command);
     };
 }
 
-$uploadFile = \BenGorFile\File\Application\upload(
-    new \BenGorFile\File\Infrastructure\Domain\Model\InMemoryFilesystem(),
-    new \BenGorFile\File\Infrastructure\Persistence\InMemory\InMemoryFileRepository()
+function printResult(string $when, array $files) : void
+{
+    echo "------------------------------------------------------------------------\n";
+    echo(sprintf("%s, there are %d files stored in memory.\n", $when, count($files)));
+}
+
+$files = [];
+printResult('At first', $files);
+
+$uploadFile = \BenGorFile\Application\uploadFile(
+    \BenGorFile\Domain\Model\File\save(
+        [
+            \BenGorFile\Infrastructure\Domain\Model\File\inMemoryPersist,
+            \BenGorFile\Infrastructure\Domain\Model\File\inMemoryWrite,
+        ],
+        $files
+    )
 );
 
-$uploadFileCommand = new \BenGorFile\File\Application\UploadFileCommand(
+$uploadFileCommand = new UploadFileCommand(
+    uniqid(),
     'testname.png',
     'testfilecontent',
     'image/png'
 );
 
 $commandBus = createCommandBus([
-    \BenGorFile\File\Application\UploadFileCommand::class => $uploadFile,
+    UploadFileCommand::class => $uploadFile,
 ]);
 
-$commandBus($uploadFileCommand);
+$files = $commandBus($uploadFileCommand);
+
+printResult('After execute upload file use case', $files);

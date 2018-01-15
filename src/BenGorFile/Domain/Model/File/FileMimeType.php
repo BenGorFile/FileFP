@@ -21,7 +21,7 @@ class FileMimeType
     public function __construct(string $mimeType)
     {
         if (false === in_array($mimeType, self::mimeTypes(), true)) {
-            throw new FileMimeTypeIsNotSupported();
+            throw new \DomainException('The given mime type is not supported');
         }
         $this->mimeType = $mimeType;
     }

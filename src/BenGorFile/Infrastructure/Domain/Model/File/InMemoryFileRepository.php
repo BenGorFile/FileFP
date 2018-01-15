@@ -16,15 +16,23 @@ namespace BenGorFile\Infrastructure\Domain\Model\File;
 
 use BenGorFile\Domain\Model\File\FileId;
 
-function fileOfId(FileId $id, array $files) : array
+const inMemoryFileOfId = '\BenGorFile\Infrastructure\Domain\Model\File\inMemoryFileOfId';
+
+function inMemoryFileOfId(FileId $id, array $files) : array
 {
     return array_filter($files, function (array $file) use ($id) {
         return array_search($id, $file, true);
     });
 }
 
-function persist(callable $event, array $files) : void
-{
+const inMemoryPersist = '\BenGorFile\Infrastructure\Domain\Model\File\inMemoryPersist';
 
+function inMemoryPersist(array $file, array $files) : array
+{
+    return isset($file['id'])
+        ? inMemoryFileOfId($file['id'], $files)
+            ? $files
+            : array_merge($files, $file)
+        : $files;
 }
 
