@@ -1,7 +1,12 @@
 # BenGorFileFP
 > BenGorFile library written in functional programming
 
-THIS IS A PROOF OF CONCEPT
+### THIS IS A PROOF OF CONCEPT
+Anyway, you can test it executing the following command after install the Composer's dependencies.
+```bash
+$ php examples/test_in_memory.php
+```
+
 
 ## Contributing
 This library follows PHP coding standards, so pull requests need to execute the Fabien Potencier's [PHP-CS-Fixer][5].
