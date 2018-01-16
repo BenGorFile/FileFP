@@ -1,9 +1,14 @@
 {
     "name": "bengor-file/file-fp",
-    "description": "BenGorFile library written in functional programming",
-    "keywords": ["file", "component", "ddd", "fp"],
-    "license": "MIT",
     "type": "library",
+    "description": "BenGorFile library written in functional programming",
+    "keywords": [
+        "file",
+        "component",
+        "ddd",
+        "fp"
+    ],
+    "license": "MIT",
     "authors": [
         {
             "name": "Beñat Espiña Diaz",
@@ -34,6 +39,8 @@
             "src/BenGorFile/Infrastructure/Domain/Model/File/InMemoryFileFilesystem.php",
             "src/BenGorFile/Infrastructure/Domain/Model/File/InMemoryFileRepository.php"
         ],
-        "exclude-from-classmap": ["/spec/"]
+        "exclude-from-classmap": [
+            "/spec/"
+        ]
     }
 }
