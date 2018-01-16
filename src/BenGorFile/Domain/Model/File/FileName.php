@@ -14,8 +14,6 @@ declare(strict_types=1);
 
 namespace BenGorFile\Domain\Model\File;
 
-use Ramsey\Uuid\Uuid;
-
 class FileName
 {
     private $name;
@@ -30,7 +28,7 @@ class FileName
     public static function fromHash(string $name) : self
     {
         $instance = new self($name);
-        $instance->name = Uuid::uuid4()->toString();
+        $instance->name = uniqid();
 
         return $instance;
     }

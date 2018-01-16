@@ -20,7 +20,8 @@ function save(array $mechanisms, array $files) : callable
         return array_unique(
             array_map(function (callable $mechanism) use ($file, $files) : array {
                 return call_user_func($mechanism, $file, $files);
-            }, $mechanisms)
+            }, $mechanisms),
+            SORT_REGULAR
         );
     };
 }
