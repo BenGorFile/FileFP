@@ -16,9 +16,7 @@ namespace BenGorFile\Domain\Model\File;
 
 function upload(FileId $id, FileName $name, FileMimeType $mimeType, string $content) : array
 {
-    return in_array($mimeType->mimeType(), FileMimeType::mimeTypes(), true)
-        ? fileWasUploaded($id, $name, $mimeType, $content)
-        : [];
+    return fileWasUploaded($id, $name, $mimeType, $content);
 }
 
 function apply(array $file, array ...$events) : array

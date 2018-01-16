@@ -25,14 +25,6 @@ class FileName
         $this->extension = pathinfo($name, PATHINFO_EXTENSION);
     }
 
-    public static function fromHash(string $name) : self
-    {
-        $instance = new self($name);
-        $instance->name = uniqid();
-
-        return $instance;
-    }
-
     public function name() : string
     {
         return $this->name;
@@ -46,11 +38,6 @@ class FileName
     public function filename() : string
     {
         return $this->name . '.' . $this->extension;
-    }
-
-    public function equals(FileName $name) : bool
-    {
-        return $this->filename() === $name->filename();
     }
 
     public function __toString() : string

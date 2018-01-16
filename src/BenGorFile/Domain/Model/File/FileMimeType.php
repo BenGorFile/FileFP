@@ -20,7 +20,7 @@ class FileMimeType
 
     public function __construct(string $mimeType)
     {
-        if (false === in_array($mimeType, self::mimeTypes(), true)) {
+        if (false === in_array($mimeType, $this->mimeTypes(), true)) {
             throw new \DomainException('The given mime type is not supported');
         }
         $this->mimeType = $mimeType;
@@ -31,17 +31,7 @@ class FileMimeType
         return $this->mimeType;
     }
 
-    public function equals(FileMimeType $mimeType) : bool
-    {
-        return $this->mimeType() === $mimeType->mimeType();
-    }
-
-    public function __toString() : string
-    {
-        return (string ) $this->mimeType();
-    }
-
-    public static function mimeTypes() : array
+    private function mimeTypes() : array
     {
         return [
             'application/vnd.lotus-1-2-3',
