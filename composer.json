@@ -13,12 +13,11 @@
         {
             "name": "Beñat Espiña Diaz",
             "email": "benatespina@gmail.com",
-            "homepage": "http://benatespina.com"
+            "homepage": "https://benatespina.com"
         },
         {
             "name": "Gorka Laucirica Ibarra",
-            "email": "gorka.lauzirika@gmail.com",
-            "homepage": "http://gorkalaucirica.net"
+            "email": "gorka.lauzirika@gmail.com"
         }
     ],
     "require": {
